@@ -1,4 +1,5 @@
 *.o
 *.swp
 nutlogger
+nutlogger.cnf
 .vscode
