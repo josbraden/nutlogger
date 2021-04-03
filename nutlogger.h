@@ -4,3 +4,5 @@ class argobj {
     bool verbose;
     argobj();
 };
+
+int init(argobj argdata);
