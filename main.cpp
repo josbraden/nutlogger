@@ -4,6 +4,27 @@
 using namespace std;
 
 int main(int argc, char *argv[]) {
-    //Placeholder currently
+    //Handle args
+    string arg;
+    argobj args;
+    if (argc == 1) {
+        return init(args);
+    }
+    else {
+        for (int i = 1; i <= argc; i++) {
+            arg = argv[i];
+            if (arg.compare("-h") == 0) {
+                cout << "Usage: nutlogger [-v]"
+                return 0;
+            }
+            else if (arg.compare("-v") == 0) {
+                args.verbose = true;
+            }
+            else {
+                cout << "Error: unknown arg entered. Use -h for help" << endl;
+                return 1;
+            }
+        }
+    }
     return 0;
 }
