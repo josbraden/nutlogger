@@ -14,7 +14,7 @@ int main(int argc, char *argv[]) {
         for (int i = 1; i <= argc; i++) {
             arg = argv[i];
             if (arg.compare("-h") == 0) {
-                cout << "Usage: nutlogger [-v]"
+                cout << "Usage: nutlogger [-v]" << endl;
                 return 0;
             }
             else if (arg.compare("-v") == 0) {
