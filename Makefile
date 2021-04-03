@@ -1,6 +1,6 @@
 CXX=g++
 CFLAGS=-Wall
-LIBS=-lmysqlcppconn -lmysqlclient -lz -ldl -pthread -lcurl -lnutclient
+LIBS=-lmysqlcppconn -lmysqlclient -lz -ldl -pthread -lnutclient
 DEPS = nutlogger.h
 NUTLOGGEROBJ = main.o
 
