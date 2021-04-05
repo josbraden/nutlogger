@@ -21,7 +21,9 @@ int init(argobj args) {
     //Open and parse config file
     infile.open(configfile, ios::in);
     if (!infile) {
-        cout << "Error: " << configfile << " not found!" << endl;
+        if (config.verbose) {
+            cout << "Error: " << configfile << " not found!" << endl;
+        }
         return 2;
     }
     while (getline(infile, line)) {
