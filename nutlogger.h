@@ -35,3 +35,6 @@ configobj setconfigfield(configobj config, std::string key, std::string value);
 
 //UPS functions
 int testups(configobj config);
+
+//Database functions
+int testmysql(configobj config);

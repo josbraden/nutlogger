@@ -13,7 +13,6 @@ https://stackoverflow.com/questions/26824260/c-unique-values-in-a-vector
 #include <fstream>
 #include <vector>
 #include "nutlogger.h"
-#include "version.h"
 using namespace std;
 
 //Handles program initialization
@@ -51,7 +50,19 @@ int init(argobj args) {
         }
         return 0;
     }
-    //TODO test mysql and UPS connections
+    //Test MySQL and UPS connections
+    if (!testups(config)) {
+        if (config.verbose) {
+            cout << "Error while testing UPS devices, exiting" << endl;
+        }
+        return 1;
+    }
+    if (!testmysql(config)) {
+        if (config.verbose) {
+            cout << "Error testing MySQL connection, exiting" << endl;
+        }
+        return 1;
+    }
     //TODO Start program
     return 0;
 }
