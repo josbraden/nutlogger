@@ -15,3 +15,9 @@ mysql_database=ups
 # Extra options, probably don't need to change these
 # How often to query the UPS devices
 #pollinterval=5
+#
+# Names of UPS's to log
+# If the UPS is not found in the database, a new entry will be created by the program
+# Multiple UPS names are supported
+upsname=ups1
+#upsname=ups2

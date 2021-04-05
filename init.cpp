@@ -6,6 +6,7 @@ https://stackoverflow.com/questions/6892754/creating-a-simple-configuration-file
 #include <sstream>
 #include <string>
 #include <fstream>
+#include <vector>
 #include "nutlogger.h"
 #include "version.h"
 using namespace std;
@@ -37,6 +38,7 @@ int init(argobj args) {
         }
     }
     infile.close();
+    //TODO sort and uniq config.upslist
     //TODO Start program
     return 0;
 }
@@ -71,6 +73,9 @@ configobj setconfigfield(configobj config, string key, string value) {
         if (value_int < 300 && value_int > 2) {
             config.pollinterval = value_int;
         }
+    }
+    else if (key.compare("upsname") == 0) {
+        config.upslist.push_back(value);
     }
     else {
         if (config.verbose) {

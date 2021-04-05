@@ -1,3 +1,4 @@
+#include <vector>
 //Object for command line args
 class argobj {
     public:
@@ -20,7 +21,8 @@ class configobj {
     //Nut server stuff
     std::string nut_server = "127.0.0.1";
     int nut_port = 3943;
-    //TODO UPS stuff
+    //UPS stuff
+    std::vector<std::string> upslist;
 };
 
 //Init functions
