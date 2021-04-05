@@ -1,4 +1,5 @@
 # Example configuration file for nutlogger
+# Copy this file to nutlogger.cnf and enter your information
 mysql_host=127.0.0.1
 mysql_username=upsuser
 mysql_password=foobar
