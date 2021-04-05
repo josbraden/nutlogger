@@ -32,7 +32,9 @@ void configobj::setconfigfield(string key, string value) {
     }
     else if (key.compare("pollinterval") == 0) {
         value_int = stoi(value);
-        if (value_int < 300 && value_int > 2) {
+        //Maximum poll wait: 24 hours
+        //Minimum: 2 seconds
+        if (value_int < 86400 && value_int > 2) {
             pollinterval = value_int;
         }
     }
