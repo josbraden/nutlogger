@@ -1,6 +1,11 @@
 /*
+Handles startup stuff, config file reading and other settings
+
 Config parsing from:
 https://stackoverflow.com/questions/6892754/creating-a-simple-configuration-file-and-parser-in-c
+
+Vector sorting and unique-ing from:
+https://stackoverflow.com/questions/26824260/c-unique-values-in-a-vector
 */
 #include <iostream>
 #include <sstream>
@@ -46,11 +51,7 @@ int init(argobj args) {
         }
         return 0;
     }
-    /*
-    Sort and uniqe config.upslist
-    Borrowed from:
-    https://stackoverflow.com/questions/26824260/c-unique-values-in-a-vector
-    */
+    //Sort and uniqe config.upslist
     sort(config.upslist.begin(), config.upslist.end());
     vector<string>::iterator it;
     it = unique(config.upslist.begin(), config.upslist.end());
