@@ -2,7 +2,7 @@ CXX=g++
 CFLAGS=-Wall
 LIBS=-lmysqlcppconn -lmysqlclient -lz -ldl -pthread -lnutclient
 DEPS = nutlogger.h
-NUTLOGGEROBJ = main.o init.o configobj.o ups.o
+NUTLOGGEROBJ = main.o init.o configobj.o ups.o database.o
 
 %.o: %.cpp $(DEPS)
 	$(CXX) $(CFLAGS) -c -o $@ $<
