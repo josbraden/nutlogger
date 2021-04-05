@@ -12,6 +12,7 @@ using namespace std;
 
 //Handles program initialization
 int init(argobj args) {
+    configobj config;
     ifstream infile;
     string line, key, value;
     string configfile = "nutlogger.cnf";
@@ -33,5 +34,32 @@ int init(argobj args) {
         }
     }
     infile.close();
+    //Set other config variables
+    config.verbose = args.verbose;
+    //TODO Start program
     return 0;
+}
+
+//Function to map config file options to the config object variables
+configobj setconfigfield(configobj config, string key, string value) {
+    int value_int;
+    if (key.compare("mysql_username") == 0) {
+        config.mysql_username = value;
+    }
+    else if (key.compare("mysql_password") == 0) {
+        config.mysql_password = value;
+    }
+    else if (key.compare("mysql_host") == 0) {
+        config.mysql_host = value;
+    }
+    else if (key.compare("mysql_database") == 0) {
+        config.mysql_database = value;
+    }
+    else if (key.compare("pollinterval") == 0) {
+        value_int = stoi(value);
+        if (value_int < 300 && value_int > 2) {
+            config.pollinterval = value_int;
+        }
+    }
+    return config;
 }
