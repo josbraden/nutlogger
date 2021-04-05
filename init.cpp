@@ -16,6 +16,8 @@ int init(argobj args) {
     ifstream infile;
     string line, key, value;
     string configfile = "nutlogger.cnf";
+    //Set variables from args
+    config.verbose = args.verbose;
     //Open and parse config file
     infile.open(configfile, ios::in);
     if (!infile) {
@@ -33,8 +35,6 @@ int init(argobj args) {
         }
     }
     infile.close();
-    //Set other config variables
-    config.verbose = args.verbose;
     //TODO Start program
     return 0;
 }
