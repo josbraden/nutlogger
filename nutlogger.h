@@ -1,8 +1,7 @@
 //Object for command line args
 class argobj {
     public:
-    bool verbose;
-    argobj();
+    bool verbose = false;
 };
 
 int init(argobj argdata);

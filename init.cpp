@@ -35,8 +35,3 @@ int init(argobj args) {
     infile.close();
     return 0;
 }
-
-//argobj init function
-argobj::argobj() {
-	verbose = false;
-}
