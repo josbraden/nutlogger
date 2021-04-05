@@ -27,8 +27,7 @@ int init(argobj args) {
             istringstream is_line(line);
             if (getline(is_line, key, '=')) {
                 if (getline(is_line, value)) {
-                    //todo store the key,value in the config object
-                    //store_line(key, value);
+                    config = setconfigfield(config, key, value);
                 }
             }
         }
@@ -60,6 +59,11 @@ configobj setconfigfield(configobj config, string key, string value) {
         if (value_int < 300 && value_int > 2) {
             config.pollinterval = value_int;
         }
+    }
+    else {
+        //TODO handle bad options
+        //For now, ignore bad options
+        ;;
     }
     return config;
 }
