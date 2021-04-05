@@ -38,6 +38,7 @@ int testups(configobj config);
 
 //Database functions
 int testmysql(configobj config);
+int getupsknt(configobj config, int index);
 
 //Main loop functions
 int logger(configobj config);
