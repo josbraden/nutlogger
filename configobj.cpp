@@ -6,6 +6,46 @@
 #include "nutlogger.h"
 using namespace std;
 
+void configobj::setconfigfield(string key, string value) {
+    int value_int = 0;
+    if (key.compare("mysql_username") == 0) {
+        mysql_username = value;
+    }
+    else if (key.compare("mysql_password") == 0) {
+        mysql_password = value;
+    }
+    else if (key.compare("mysql_host") == 0) {
+        mysql_host = value;
+    }
+    else if (key.compare("mysql_database") == 0) {
+        mysql_database = value;
+    }
+    else if (key.compare("nut_server") == 0) {
+        nut_server = value;
+    }
+    else if (key.compare("nut_port") == 0) {
+        value_int = stoi(value);
+        //Entire TCP port range is a pretty wide sanity check
+        if (value_int > 1 && value_int < 65535) {
+            nut_port = value_int;
+        }
+    }
+    else if (key.compare("pollinterval") == 0) {
+        value_int = stoi(value);
+        if (value_int < 300 && value_int > 2) {
+            pollinterval = value_int;
+        }
+    }
+    else if (key.compare("upsname") == 0) {
+        upslist.push_back(value);
+    }
+    else {
+        if (verbose) {
+            cout << "Ignoring unknown config entry: " << key << "=" << value << endl;
+        }
+    }
+}
+
 //Function to sort and unique the UPS device list
 void configobj::upslist_sortUnique() {
     sort(upslist.begin(), upslist.end());
