@@ -7,6 +7,8 @@ https://stackoverflow.com/questions/6892754/creating-a-simple-configuration-file
 #include <string>
 #include <fstream>
 #include <vector>
+#include <algorithm>
+#include <iterator>
 #include "nutlogger.h"
 #include "version.h"
 using namespace std;
@@ -38,7 +40,21 @@ int init(argobj args) {
         }
     }
     infile.close();
-    //TODO sort and uniq config.upslist
+    if (config.upslist.size() == 0) {
+        if (config.verbose) {
+            cout << "No UPS devices listed for monitor, exiting" << endl;
+        }
+        return 0;
+    }
+    /*
+    Sort and uniqe config.upslist
+    Borrowed from:
+    https://stackoverflow.com/questions/26824260/c-unique-values-in-a-vector
+    */
+    sort(config.upslist.begin(), config.upslist.end());
+    vector<string>::iterator it;
+    it = unique(config.upslist.begin(), config.upslist.end());
+    config.upslist.resize(distance(config.upslist.begin(),it));
     //TODO Start program
     return 0;
 }
