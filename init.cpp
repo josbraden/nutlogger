@@ -43,7 +43,7 @@ int init(argobj args) {
 
 //Function to map config file options to the config object variables
 configobj setconfigfield(configobj config, string key, string value) {
-    int value_int;
+    int value_int = 0;
     if (key.compare("mysql_username") == 0) {
         config.mysql_username = value;
     }
@@ -55,6 +55,16 @@ configobj setconfigfield(configobj config, string key, string value) {
     }
     else if (key.compare("mysql_database") == 0) {
         config.mysql_database = value;
+    }
+    else if (key.compare("nut_server") == 0) {
+        config.nut_server = value;
+    }
+    else if (key.compare("nut_port") == 0) {
+        value_int = stoi(value);
+        //Entire TCP port range is a pretty wide sanity check
+        if (value_int > 1 && value_int < 65535) {
+            config.nut_port = value_int;
+        }
     }
     else if (key.compare("pollinterval") == 0) {
         value_int = stoi(value);

@@ -14,6 +14,8 @@ class configobj {
 	std::string mysql_username = "upsuser";
 	std::string mysql_password = "foobar";
 	std::string mysql_database = "ups";
+    std::string nut_server = "127.0.0.1";
+    int nut_port = 3943;
 	bool mysql_compress = false;
 };
 

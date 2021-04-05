@@ -1,6 +1,17 @@
 # Example configuration file for nutlogger
 # Copy this file to nutlogger.cnf and enter your information
+#
+# MySQL server info:
 mysql_host=127.0.0.1
 mysql_username=upsuser
 mysql_password=foobar
 mysql_database=ups
+#
+# Nut server info, uncomment to change from defaults
+# Currently username/password aren't supported
+#nut_server=127.0.0.1
+#nut_port=3943
+#
+# Extra options, probably don't need to change these
+# How often to query the UPS devices
+#pollinterval=5
