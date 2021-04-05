@@ -63,6 +63,6 @@ int init(argobj args) {
         }
         return 1;
     }
-    //TODO Start program
-    return 0;
+    //Start main program loop
+    return logger(config);
 }

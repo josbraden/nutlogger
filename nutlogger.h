@@ -38,3 +38,6 @@ int testups(configobj config);
 
 //Database functions
 int testmysql(configobj config);
+
+//Main loop functions
+int logger(configobj config);
