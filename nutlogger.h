@@ -23,6 +23,7 @@ class configobj {
     int nut_port = 3943;
     //UPS stuff
     std::vector<std::string> upslist;
+    void upslist_sortUnique();
 };
 
 //Init functions

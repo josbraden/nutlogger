@@ -12,8 +12,6 @@ https://stackoverflow.com/questions/26824260/c-unique-values-in-a-vector
 #include <string>
 #include <fstream>
 #include <vector>
-#include <algorithm>
-#include <iterator>
 #include "nutlogger.h"
 #include "version.h"
 using namespace std;
@@ -51,11 +49,8 @@ int init(argobj args) {
         }
         return 0;
     }
-    //Sort and uniqe config.upslist
-    sort(config.upslist.begin(), config.upslist.end());
-    vector<string>::iterator it;
-    it = unique(config.upslist.begin(), config.upslist.end());
-    config.upslist.resize(distance(config.upslist.begin(),it));
+    //Sort and unique config.upslist
+    config.upslist_sortUnique();
     //TODO Start program
     return 0;
 }
