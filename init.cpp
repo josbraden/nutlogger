@@ -61,9 +61,9 @@ configobj setconfigfield(configobj config, string key, string value) {
         }
     }
     else {
-        //TODO handle bad options
-        //For now, ignore bad options
-        ;;
+        if (config.verbose) {
+            cout << "Ignoring unknown config entry: " << key << "=" << value << endl;
+        }
     }
     return config;
 }
