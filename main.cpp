@@ -7,10 +7,7 @@ int main(int argc, char *argv[]) {
     //Handle args
     string arg;
     argobj args;
-    if (argc == 1) {
-        return init(args);
-    }
-    else {
+    if (argc > 1) {
         for (int i = 1; i <= argc; i++) {
             arg = argv[i];
             if (arg.compare("-h") == 0) {
@@ -26,5 +23,5 @@ int main(int argc, char *argv[]) {
             }
         }
     }
-    return 0;
+    return init(args);
 }
