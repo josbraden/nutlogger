@@ -9,7 +9,7 @@ using namespace std;
 
 int logger(configobj config) {
     //Before starting loop, see if devices are in database yet
-    for (int i = 0; i < config.upslist.size(); i++) {
+    for (long unsigned int i = 0; i < config.upslist.size(); i++) {
         if (getupsknt(config, i) != 1) {
             //Add device to MySQL database
         }
