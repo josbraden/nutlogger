@@ -108,10 +108,8 @@ int addups(configobj config, int index) {
 		cout << ", SQLState: " << e.getSQLState() << " )" << endl;
 		return -1;
 	}
-    //TODO get device id here
-    //ret = getupsid(config, config.upslist[index]);
-    ret = 0;
-	return ret;
+    ret = getupsid(config, config.upslist[index]);
+    return ret;
 }
 
 //Returns DB ID of given UPS
