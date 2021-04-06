@@ -55,3 +55,10 @@ void configobj::upslist_sortUnique() {
     it = unique(upslist.begin(), upslist.end());
     upslist.resize(distance(upslist.begin(),it));
 }
+
+//Function to populate the upsidlist with the IDs of the UPSs in the upslist
+void configobj::set_upsidlist() {
+    for (long unsigned int i = 0; i < upslist.size(); i++) {
+        upsidlist[i] = getupsid(*this, i);
+    }
+}

@@ -23,10 +23,12 @@ class configobj {
     int nut_port = 3943;
     //UPS stuff
     std::vector<std::string> upslist;
+    std::vector<std::string> upsidlist;
 
     //Function declarations
     void setconfigfield(std::string key, std::string value);
     void upslist_sortUnique();
+    void set_upsidlist();
 };
 
 //Init functions
