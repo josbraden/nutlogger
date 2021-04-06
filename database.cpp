@@ -108,7 +108,7 @@ int addups(configobj config, int index) {
 		cout << ", SQLState: " << e.getSQLState() << " )" << endl;
 		return -1;
 	}
-    ret = getupsid(config, config.upslist[index]);
+    ret = getupsid(config, index);
     return ret;
 }
 
