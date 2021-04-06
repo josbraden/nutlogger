@@ -40,6 +40,7 @@ int testups(configobj config);
 int testmysql(configobj config);
 int getupsknt(configobj config, int index);
 int addups(configobj config, int index);
+int getupsid(configobj config, int index);
 
 //Main loop functions
 int logger(configobj config);
