@@ -17,7 +17,7 @@ int logger(configobj config) {
             if (config.verbose) {
                 cout << "Adding " << config.upslist[i] << " to database" << endl;
             }
-            //Add device to MySQL database
+            addups(config, i);
         }
     }
     //Get device IDs
