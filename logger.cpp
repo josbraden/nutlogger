@@ -24,6 +24,13 @@ int logger(configobj config) {
     if (config.verbose) {
         cout << "Getting device IDs from database" << endl;
     }
+    config.set_upsidlist();
+    if (config.upslist.size() != config.upsidlist.size()) {
+        if (config.verbose) {
+            cout << "Error: not all devices have a corresponding ID, exiting" << endl;
+        }
+        return 3;
+    }
     //Update 'extra' dvice info
     if (config.verbose) {
         cout << "Updating device extra data fields" << endl;
