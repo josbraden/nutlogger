@@ -15,10 +15,6 @@ int testups(configobj config) {
         try {
             nut::Client* nutclient = new nut::TcpClient(config.nut_server, config.nut_port);
             nut::Device nutdevice = nutclient->getDevice(config.upslist[i]);
-            testvar = nutdevice.getDescription();
-            if (config.verbose) {
-                cout << "Device " << config.upslist[i] << " description: " << testvar << endl;
-            }
             nut::Variable nutvar = nutdevice.getVariable("device.model");
             testvar = nutvar.getValue()[0];
             if (config.verbose) {
