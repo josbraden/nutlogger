@@ -53,13 +53,13 @@ int init(argobj args) {
         return 0;
     }
     //Test MySQL and UPS connections
-    if (!testups(config)) {
+    if (testups(config)) {
         if (config.verbose) {
             cout << "Error while testing UPS devices, exiting" << endl;
         }
         return 1;
     }
-    if (!testmysql(config)) {
+    if (testmysql(config)) {
         if (config.verbose) {
             cout << "Error testing MySQL connection, exiting" << endl;
         }
