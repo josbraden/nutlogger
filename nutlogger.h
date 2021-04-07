@@ -34,6 +34,7 @@ class configobj {
 //Object to hold extra data fields for a UPS device
 class extradataobj {
     public:
+    int status = 0;
     int battery_charge_low;
     int battery_charge_warning;
     std::string battery_mfr_date;
@@ -69,6 +70,7 @@ configobj setconfigfield(configobj config, std::string key, std::string value);
 
 //UPS functions
 int testups(configobj config);
+extradataobj getextradata(configobj config, int index);
 
 //Database functions
 int testmysql(configobj config);
