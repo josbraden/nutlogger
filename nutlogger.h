@@ -23,7 +23,7 @@ class configobj {
     bool mysql_compress = false;
     //Nut server stuff
     std::string nut_server = "127.0.0.1";
-    int nut_port = 3943;
+    int nut_port = 3493;
     //UPS stuff
     std::vector<std::string> upslist;
     std::vector<int> upsidlist;
