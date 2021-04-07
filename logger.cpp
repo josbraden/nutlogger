@@ -86,7 +86,7 @@ int checkevent(configobj config, int index, logdataobj initialdata, logdataobj l
         if (config.verbose) {
             cout << "Event detected! Logging to database" << endl;
         }
-        //addevententry(config, index, logdata);
+        addevententry(config, index, logdata);
         return 1;
     }
     return 0;
