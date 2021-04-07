@@ -97,12 +97,12 @@ extradataobj getextradata(configobj config, int index) {
         extradata.ups_vendorid = stoi(nutvar.getValue()[0]);
     }
     catch(nut::NutException& ex) {
-            if (config.verbose) {
-                cerr << "Unexpected problem : " << ex.str() << endl;
-            }
-            extradata.status = 1;
-            return extradata;
+        if (config.verbose) {
+            cerr << "Unexpected problem : " << ex.str() << endl;
         }
+        extradata.status = 1;
+        return extradata;
+    }
     return extradata;
 }
 
