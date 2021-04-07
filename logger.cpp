@@ -11,7 +11,7 @@ using namespace std;
 int logger(configobj config) {
     extradataobj extradata;
     logdataobj logdata;
-    vector<logdataobj> initalstate;
+    vector<logdataobj> initialstate;
     //Before starting loop, see if devices are in database yet
     if (config.verbose) {
         cout << "Checking database for devices..." << endl;
@@ -51,7 +51,7 @@ int logger(configobj config) {
         cout << "Getting inital UPS state" << endl;
     }
     for (long unsigned int i = 0; i < config.upslist.size(); i++) {
-        initalstate[i] = getlogdata(config, i);
+        initialstate[i] = getlogdata(config, i);
     }
     //Start logging loop
     if (config.verbose) {
@@ -65,6 +65,7 @@ int logger(configobj config) {
             logdata.status = 0;
             logdata = getlogdata(config, i);
             addlogentry(config, i, logdata);
+            checkevent(config, i, initialstate[i], logdata);
             //TODO trigger events
         }
         if (config.singleloop) {
@@ -74,6 +75,19 @@ int logger(configobj config) {
             cout << "Sleeping for " << config.pollinterval << " seconds" << endl;
         }
         sleep(config.pollinterval);
+    }
+    return 0;
+}
+
+//Checks if an event has occurred, and if so adds an entry in the events table
+//Return 0 if no event happened, 1 if an event happened
+int checkevent(configobj config, int index, logdataobj initialdata, logdataobj logdata) {
+    if (logdata.battery_charge != initialdata.battery_charge || logdata.ups_status != initialdata.ups_status) {
+        if (config.verbose) {
+            cout << "Event detected! Logging to database" << endl;
+        }
+        //addevententry(config, index, logdata);
+        return 1;
     }
     return 0;
 }

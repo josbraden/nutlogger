@@ -98,3 +98,4 @@ int addlogentry(configobj config, int index, logdataobj logdata);
 
 //Main loop functions
 int logger(configobj config);
+int checkevent(configobj config, int index, logdataobj initialdata, logdataobj logdata);
