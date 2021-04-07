@@ -8,6 +8,7 @@ Main logger loop code
 using namespace std;
 
 int logger(configobj config) {
+    extradataobj extradata;
     //Before starting loop, see if devices are in database yet
     if (config.verbose) {
         cout << "Checking database for devices..." << endl;
@@ -35,7 +36,13 @@ int logger(configobj config) {
     if (config.verbose) {
         cout << "Updating device extra data fields" << endl;
     }
-    //Other startup stuff?
+    for (long unsigned int i = 0; i < config.upslist.size(); i++) {
+        extradata.status = 0;
+        extradata = getextradata(config, i);
+        if (extradata.status == 0) {
+            updateextradata(config, i, extradata);
+        }
+    }
     //Start logging loop
     if (config.verbose) {
         cout << "Starting logging" << endl;
