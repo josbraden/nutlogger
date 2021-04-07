@@ -105,3 +105,33 @@ extradataobj getextradata(configobj config, int index) {
         }
     return extradata;
 }
+
+logdataobj getlogdata(configobj config, int index) {
+    logdataobj logdata;
+    try {
+        nut::Client* nutclient = new nut::TcpClient(config.nut_server, config.nut_port);
+        nut::Device nutdevice = nutclient->getDevice(config.upslist[index]);
+        nut::Variable nutvar = nutdevice.getVariable("battery.charge");
+        logdata.battery_charge = stoi(nutvar.getValue()[0]);
+        nutvar = nutdevice.getVariable("battery.runtime");
+        logdata.battery_runtime = stoi(nutvar.getValue()[0]);
+        nutvar = nutdevice.getVariable("battery.voltage");
+        logdata.battery_voltage = stof(nutvar.getValue()[0]);
+        nutvar = nutdevice.getVariable("input.voltage");
+        logdata.input_voltage = stof(nutvar.getValue()[0]);
+        nutvar = nutdevice.getVariable("output.voltage");
+        logdata.output_voltage = stof(nutvar.getValue()[0]);
+        nutvar = nutdevice.getVariable("ups.load");
+        logdata.ups_load = stoi(nutvar.getValue()[0]);
+        nutvar = nutdevice.getVariable("ups.status");
+        logdata.ups_status = nutvar.getValue()[0];
+    }
+    catch(nut::NutException& ex) {
+        if (config.verbose) {
+            cerr << "Unexpected problem : " << ex.str() << endl;
+        }
+        logdata.status = 1;
+        return logdata;
+    }
+    return logdata;
+}
