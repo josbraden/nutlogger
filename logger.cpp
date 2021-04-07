@@ -4,11 +4,13 @@ Main logger loop code
 #include <iostream>
 #include <string>
 #include <vector>
+#include <unistd.h>
 #include "nutlogger.h"
 using namespace std;
 
 int logger(configobj config) {
     extradataobj extradata;
+    logdataobj logdata;
     //Before starting loop, see if devices are in database yet
     if (config.verbose) {
         cout << "Checking database for devices..." << endl;
@@ -46,6 +48,24 @@ int logger(configobj config) {
     //Start logging loop
     if (config.verbose) {
         cout << "Starting logging" << endl;
+    }
+    //TODO get initial status for event triggering
+    while (true) {
+        for (long unsigned int i = 0; i < config.upslist.size(); i++) {
+            if (config.verbose) {
+                cout << "Querying " << config.upslist[i] << endl;
+            }
+            logdata.status = 0;
+            logdata = getlogdata(config, i);
+            addlogentry(config, i, logdata);
+        }
+        if (config.singleloop) {
+            return 0;
+        }
+        if (config.verbose) {
+            cout << "Sleeping for " << config.pollinterval << " seconds" << endl;
+        }
+        sleep(config.pollinterval);
     }
     return 0;
 }
