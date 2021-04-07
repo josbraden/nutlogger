@@ -11,6 +11,7 @@ using namespace std;
 int logger(configobj config) {
     extradataobj extradata;
     logdataobj logdata;
+    vector<logdataobj> initalstate;
     //Before starting loop, see if devices are in database yet
     if (config.verbose) {
         cout << "Checking database for devices..." << endl;
@@ -45,11 +46,17 @@ int logger(configobj config) {
             updateextradata(config, i, extradata);
         }
     }
+    //Get initial status for event triggering
+    if (config.verbose) {
+        cout << "Getting inital UPS state" << endl;
+    }
+    for (long unsigned int i = 0; i < config.upslist.size(); i++) {
+        initalstate[i] = getlogdata(config, i);
+    }
     //Start logging loop
     if (config.verbose) {
         cout << "Starting logging" << endl;
     }
-    //TODO get initial status for event triggering
     while (true) {
         for (long unsigned int i = 0; i < config.upslist.size(); i++) {
             if (config.verbose) {
@@ -58,6 +65,7 @@ int logger(configobj config) {
             logdata.status = 0;
             logdata = getlogdata(config, i);
             addlogentry(config, i, logdata);
+            //TODO trigger events
         }
         if (config.singleloop) {
             return 0;
