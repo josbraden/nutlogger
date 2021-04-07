@@ -23,6 +23,7 @@ int init(argobj args) {
     string configfile = "nutlogger.cnf";
     //Set variables from args
     config.verbose = args.verbose;
+    config.singleloop = args.singleloop;
     //Open and parse config file
     infile.open(configfile, ios::in);
     if (!infile) {
