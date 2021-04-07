@@ -26,7 +26,8 @@ CREATE TABLE `devices` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nut_name` varchar(64) NOT NULL,
   `date_added` timestamp NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `nut_name` (`nut_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -86,6 +87,37 @@ CREATE TABLE `devices_extradata` (
 LOCK TABLES `devices_extradata` WRITE;
 /*!40000 ALTER TABLE `devices_extradata` DISABLE KEYS */;
 /*!40000 ALTER TABLE `devices_extradata` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `events`
+--
+
+DROP TABLE IF EXISTS `events`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `events` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `devices_id` int(11) NOT NULL,
+  `timestamp` timestamp NOT NULL DEFAULT current_timestamp(),
+  `battery_charge` int(11) NOT NULL,
+  `battery_runtime` int(11) NOT NULL,
+  `battery_voltage` float NOT NULL,
+  `input_voltage` float NOT NULL,
+  `output_voltage` float NOT NULL,
+  `ups_load` int(11) NOT NULL,
+  `ups_status` varchar(8) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `events`
+--
+
+LOCK TABLES `events` WRITE;
+/*!40000 ALTER TABLE `events` DISABLE KEYS */;
+/*!40000 ALTER TABLE `events` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -159,4 +191,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-04-06 17:28:33
+-- Dump completed on 2021-04-07 16:39:41
