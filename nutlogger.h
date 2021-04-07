@@ -40,7 +40,7 @@ class logdataobj {
     float input_voltage;
     float output_voltage;
     int ups_load;
-    std::string ups_load;
+    std::string ups_status;
 };
 
 //Object to hold extra data fields for a UPS device
