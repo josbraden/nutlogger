@@ -23,7 +23,7 @@ class configobj {
     int nut_port = 3943;
     //UPS stuff
     std::vector<std::string> upslist;
-    std::vector<std::string> upsidlist;
+    std::vector<int> upsidlist;
 
     //Function declarations
     void setconfigfield(std::string key, std::string value);
@@ -75,7 +75,7 @@ int testmysql(configobj config);
 int getupsknt(configobj config, int index);
 int addups(configobj config, int index);
 int getupsid(configobj config, int index);
-int updateextradata(configobj config, int index);
+int updateextradata(configobj config, int index, extradataobj extradata);
 
 //Main loop functions
 int logger(configobj config);
