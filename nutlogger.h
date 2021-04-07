@@ -92,6 +92,7 @@ int getupsknt(configobj config, int index);
 int addups(configobj config, int index);
 int getupsid(configobj config, int index);
 int updateextradata(configobj config, int index, extradataobj extradata);
+int addlogentry(configobj config, int index, logdataobj logdata);
 
 //Main loop functions
 int logger(configobj config);

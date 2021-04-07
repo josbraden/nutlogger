@@ -149,7 +149,6 @@ int getupsid(configobj config, int index) {
 }
 
 int updateextradata(configobj config, int index, extradataobj extradata) {
-    //TODO get info from UPSs
     string query = "INSERT INTO devices_extradata ("
         "devices_id,"
         "battery_charge_low,"
@@ -209,6 +208,55 @@ int updateextradata(configobj config, int index, extradataobj extradata) {
         + to_string(extradata.ups_timer_start) + ","
         + to_string(extradata.ups_vendorid) + ")"
         "ON DUPLICATE KEY UPDATE devices_id = devices_id"; //do nothing on duplicate keys
+    try {
+		sql::Driver *driver;
+		sql::Connection *con;
+		sql::ConnectOptionsMap connection_properties;
+		sql::Statement *stmt;
+		sql::ResultSet *res;
+		connection_properties["hostName"] = config.mysql_host;
+		connection_properties["userName"] = config.mysql_username;
+		connection_properties["password"] = config.mysql_password;
+		connection_properties["schema"] = config.mysql_database;
+		connection_properties["CLIENT_COMPRESS"] = config.mysql_compress;
+		driver = get_driver_instance();
+		con = driver->connect(connection_properties);
+		stmt = con->createStatement();
+		res = stmt->executeQuery(query);
+		delete res;
+		delete stmt;
+		delete con;
+	}
+	catch (sql::SQLException &e) {
+		cout << "# ERR: SQLException in " << __FILE__;
+		cout << "(" << __FUNCTION__ << ") on line " << __LINE__ << endl;
+		cout << "# ERR: " << e.what();
+		cout << " (MySQL error code: " << e.getErrorCode();
+		cout << ", SQLState: " << e.getSQLState() << " )" << endl;
+		return -1;
+	}
+    return 0;
+}
+
+int addlogentry(configobj config, int index, logdataobj logdata) {
+    string query = "INSERT INTO upslog ("
+        "devices_id,"
+        "battery_charge,"
+        "battery_runtime,"
+        "battery_voltage,"
+        "input_voltage,"
+        "output_voltage,"
+        "ups_load,"
+        "ups_status"
+        ") VALUES ("
+        + to_string(config.upsidlist[index]) + ","
+        + to_string(logdata.battery_charge) + ","
+        + to_string(logdata.battery_runtime) + ","
+        + to_string(logdata.battery_voltage) + ","
+        + to_string(logdata.input_voltage) + ","
+        + to_string(logdata.output_voltage) + ","
+        + to_string(logdata.ups_load) + ","
+        + logdata.ups_status + ")";
     try {
 		sql::Driver *driver;
 		sql::Connection *con;
