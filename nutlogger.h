@@ -34,6 +34,7 @@ class configobj {
 //Object to hold data for log entries
 class logdataobj {
     public:
+    int status = 0;
     int battery_charge;
     int battery_runtime;
     float battery_voltage;
@@ -83,6 +84,7 @@ configobj setconfigfield(configobj config, std::string key, std::string value);
 //UPS functions
 int testups(configobj config);
 extradataobj getextradata(configobj config, int index);
+logdataobj getlogdata(configobj config, int index);
 
 //Database functions
 int testmysql(configobj config);
