@@ -4,6 +4,7 @@ class argobj {
     public:
     bool verbose = false;
     bool singleloop = false;
+    bool mysql_compress = false;
 };
 
 //Object for program runtime configurations

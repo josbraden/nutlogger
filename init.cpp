@@ -24,6 +24,7 @@ int init(argobj args) {
     //Set variables from args
     config.verbose = args.verbose;
     config.singleloop = args.singleloop;
+    config.mysql_compress = args.mysql_compress;
     //Open and parse config file
     infile.open(configfile, ios::in);
     if (!infile) {

@@ -11,7 +11,7 @@ int main(int argc, char *argv[]) {
         for (int i = 1; i < argc; i++) {
             arg = argv[i];
             if (arg.compare("-h") == 0) {
-                cout << "Usage: nutlogger [-v] [--singleloop]" << endl;
+                cout << "Usage: nutlogger [-v] [--singleloop] [-C]" << endl;
                 return 0;
             }
             else if (arg.compare("-v") == 0) {
@@ -19,6 +19,9 @@ int main(int argc, char *argv[]) {
             }
             else if (arg.compare("--singleloop") == 0) {
                 args.singleloop = true;
+            }
+            else if (arg.compare("-C") == 0) {
+                args.mysql_compress = true;
             }
             else {
                 cout << "Error: unknown arg entered. Use -h for help" << endl;
