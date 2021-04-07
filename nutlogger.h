@@ -31,6 +31,18 @@ class configobj {
     void set_upsidlist();
 };
 
+//Object to hold data for log entries
+class logdataobj {
+    public:
+    int battery_charge;
+    int battery_runtime;
+    float battery_voltage;
+    float input_voltage;
+    float output_voltage;
+    int ups_load;
+    std::string ups_load;
+};
+
 //Object to hold extra data fields for a UPS device
 class extradataobj {
     public:
