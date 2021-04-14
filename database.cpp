@@ -85,7 +85,6 @@ int getupsknt(configobj config, int index) {
 //Adds a UPS to the database and returns it's ID
 int addups(configobj config, int index) {
     string query = "INSERT INTO devices (nut_name) VALUES ('" + config.upslist[index] + "')";
-    int ret;
     try {
 		sql::Driver *driver;
 		sql::Connection *con;
@@ -113,8 +112,7 @@ int addups(configobj config, int index) {
 		cout << ", SQLState: " << e.getSQLState() << " )" << endl;
 		return -1;
 	}
-    ret = getupsid(config, index);
-    return ret;
+    return 0;
 }
 
 //Returns DB ID of given UPS
