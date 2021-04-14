@@ -251,15 +251,15 @@ int addlogentry(configobj config, int index, logdataobj logdata) {
         "output_voltage,"
         "ups_load,"
         "ups_status"
-        ") VALUES ("
-        + to_string(config.upsidlist[index]) + ","
-        + to_string(logdata.battery_charge) + ","
-        + to_string(logdata.battery_runtime) + ","
-        + to_string(logdata.battery_voltage) + ","
-        + to_string(logdata.input_voltage) + ","
-        + to_string(logdata.output_voltage) + ","
-        + to_string(logdata.ups_load) + ","
-        + logdata.ups_status + ")";
+        ") VALUES ('"
+        + to_string(config.upsidlist[index]) + "','"
+        + to_string(logdata.battery_charge) + "','"
+        + to_string(logdata.battery_runtime) + "','"
+        + to_string(logdata.battery_voltage) + "','"
+        + to_string(logdata.input_voltage) + "','"
+        + to_string(logdata.output_voltage) + "','"
+        + to_string(logdata.ups_load) + "','"
+        + logdata.ups_status + "')";
     try {
 		sql::Driver *driver;
 		sql::Connection *con;
@@ -301,15 +301,15 @@ int addevententry(configobj config, int index, logdataobj logdata) {
         "output_voltage,"
         "ups_load,"
         "ups_status"
-        ") VALUES ("
-        + to_string(config.upsidlist[index]) + ","
-        + to_string(logdata.battery_charge) + ","
-        + to_string(logdata.battery_runtime) + ","
-        + to_string(logdata.battery_voltage) + ","
-        + to_string(logdata.input_voltage) + ","
-        + to_string(logdata.output_voltage) + ","
-        + to_string(logdata.ups_load) + ","
-        + logdata.ups_status + ")";
+        ") VALUES ('"
+        + to_string(config.upsidlist[index]) + "','"
+        + to_string(logdata.battery_charge) + "','"
+        + to_string(logdata.battery_runtime) + "','"
+        + to_string(logdata.battery_voltage) + "','"
+        + to_string(logdata.input_voltage) + "','"
+        + to_string(logdata.output_voltage) + "','"
+        + to_string(logdata.ups_load) + "','"
+        + logdata.ups_status + "')";
     try {
 		sql::Driver *driver;
 		sql::Connection *con;
