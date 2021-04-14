@@ -48,7 +48,7 @@ int testmysql(configobj config) {
 
 //Gets number of UPSs with given name in config.upslist index
 int getupsknt(configobj config, int index) {
-    string query = "SELECT COUNT(*) FROM devices WHERE name = " + config.upslist[index];
+    string query = "SELECT COUNT(*) FROM devices WHERE nut_name = " + config.upslist[index];
     int ret;
     try {
 		sql::Driver *driver;
