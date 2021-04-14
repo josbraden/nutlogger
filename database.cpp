@@ -48,7 +48,7 @@ int testmysql(configobj config) {
 
 //Gets number of UPSs with given name in config.upslist index
 int getupsknt(configobj config, int index) {
-    string query = "SELECT COUNT(*) FROM devices WHERE nut_name = " + config.upslist[index];
+    string query = "SELECT COUNT(*) FROM devices WHERE nut_name = '" + config.upslist[index] + "'";
     int ret;
     try {
 		sql::Driver *driver;
@@ -83,7 +83,7 @@ int getupsknt(configobj config, int index) {
 
 //Adds a UPS to the database and returns it's ID
 int addups(configobj config, int index) {
-    string query = "INSERT INTO devices (nut_name) VALUES (" + config.upslist[index] + ")";
+    string query = "INSERT INTO devices (nut_name) VALUES ('" + config.upslist[index] + "')";
     int ret;
     try {
 		sql::Driver *driver;
@@ -118,7 +118,7 @@ int addups(configobj config, int index) {
 
 //Returns DB ID of given UPS
 int getupsid(configobj config, int index) {
-    string query = "SELECT id FROM devices WHERE nut_name = " + config.upslist[index] + " LIMIT 1";
+    string query = "SELECT id FROM devices WHERE nut_name = '" + config.upslist[index] + "' LIMIT 1";
     int ret;
     try {
 		sql::Driver *driver;
