@@ -13,6 +13,9 @@ using namespace std;
 
 //Simple function to test connectivity to MySQL server
 int testmysql(configobj config) {
+	if (config.verbose) {
+		cout << "Testing database connection..." << endl;
+	}
 	try {
 		sql::Driver *driver;
 		sql::Connection *con;
