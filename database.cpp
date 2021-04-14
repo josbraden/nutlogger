@@ -65,6 +65,7 @@ int getupsknt(configobj config, int index) {
 		con = driver->connect(connection_properties);
 		stmt = con->createStatement();
 		res = stmt->executeQuery(query);
+		res->next();
         ret = res->getInt("COUNT(*)");
 		delete res;
 		delete stmt;
@@ -135,6 +136,7 @@ int getupsid(configobj config, int index) {
 		con = driver->connect(connection_properties);
 		stmt = con->createStatement();
 		res = stmt->executeQuery(query);
+		res->next();
         ret = res->getInt("id");
 		delete res;
 		delete stmt;
