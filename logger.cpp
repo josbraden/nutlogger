@@ -28,7 +28,7 @@ int logger(configobj config) {
     if (config.verbose) {
         cout << "Getting device IDs from database" << endl;
     }
-    config.set_upsidlist();
+    config = set_upsidlist(config);
     if (config.upslist.size() != config.upsidlist.size()) {
         if (config.verbose) {
             cout << "Error: not all devices have a corresponding ID, exiting" << endl;
@@ -90,4 +90,12 @@ int checkevent(configobj config, int index, logdataobj initialdata, logdataobj l
         return 1;
     }
     return 0;
+}
+
+//Function to populate the upsidlist with the IDs of the UPSs in the upslist
+configobj set_upsidlist(configobj config) {
+    for (long unsigned int i = 0; i < config.upslist.size(); i++) {
+        config.upsidlist[i] = getupsid(config, i);
+    }
+    return config;
 }

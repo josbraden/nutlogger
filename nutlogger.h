@@ -31,7 +31,6 @@ class configobj {
     //Function declarations
     void setconfigfield(std::string key, std::string value);
     void upslist_sortUnique();
-    void set_upsidlist();
 };
 
 //Object to hold data for log entries
@@ -101,3 +100,4 @@ int addevententry(configobj config, int index, logdataobj logdata);
 //Main loop functions
 int logger(configobj config);
 int checkevent(configobj config, int index, logdataobj initialdata, logdataobj logdata);
+configobj set_upsidlist(configobj config);
