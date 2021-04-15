@@ -90,7 +90,6 @@ int addups(configobj config, int index) {
 		sql::Connection *con;
 		sql::ConnectOptionsMap connection_properties;
 		sql::Statement *stmt;
-		sql::ResultSet *res;
 		connection_properties["hostName"] = config.mysql_host;
 		connection_properties["userName"] = config.mysql_username;
 		connection_properties["password"] = config.mysql_password;
@@ -99,8 +98,7 @@ int addups(configobj config, int index) {
 		driver = get_driver_instance();
 		con = driver->connect(connection_properties);
 		stmt = con->createStatement();
-		res = stmt->executeQuery(query);
-		delete res;
+		stmt->executeQuery(query);
 		delete stmt;
 		delete con;
 	}
@@ -216,7 +214,6 @@ int updateextradata(configobj config, int index, extradataobj extradata) {
 		sql::Connection *con;
 		sql::ConnectOptionsMap connection_properties;
 		sql::Statement *stmt;
-		sql::ResultSet *res;
 		connection_properties["hostName"] = config.mysql_host;
 		connection_properties["userName"] = config.mysql_username;
 		connection_properties["password"] = config.mysql_password;
@@ -225,8 +222,7 @@ int updateextradata(configobj config, int index, extradataobj extradata) {
 		driver = get_driver_instance();
 		con = driver->connect(connection_properties);
 		stmt = con->createStatement();
-		res = stmt->executeQuery(query);
-		delete res;
+		stmt->executeQuery(query);
 		delete stmt;
 		delete con;
 	}
@@ -265,7 +261,6 @@ int addlogentry(configobj config, int index, logdataobj logdata) {
 		sql::Connection *con;
 		sql::ConnectOptionsMap connection_properties;
 		sql::Statement *stmt;
-		sql::ResultSet *res;
 		connection_properties["hostName"] = config.mysql_host;
 		connection_properties["userName"] = config.mysql_username;
 		connection_properties["password"] = config.mysql_password;
@@ -274,8 +269,7 @@ int addlogentry(configobj config, int index, logdataobj logdata) {
 		driver = get_driver_instance();
 		con = driver->connect(connection_properties);
 		stmt = con->createStatement();
-		res = stmt->executeQuery(query);
-		delete res;
+		stmt->executeQuery(query);
 		delete stmt;
 		delete con;
 	}
@@ -315,7 +309,6 @@ int addevententry(configobj config, int index, logdataobj logdata) {
 		sql::Connection *con;
 		sql::ConnectOptionsMap connection_properties;
 		sql::Statement *stmt;
-		sql::ResultSet *res;
 		connection_properties["hostName"] = config.mysql_host;
 		connection_properties["userName"] = config.mysql_username;
 		connection_properties["password"] = config.mysql_password;
@@ -324,8 +317,7 @@ int addevententry(configobj config, int index, logdataobj logdata) {
 		driver = get_driver_instance();
 		con = driver->connect(connection_properties);
 		stmt = con->createStatement();
-		res = stmt->executeQuery(query);
-		delete res;
+		stmt->executeQuery(query);
 		delete stmt;
 		delete con;
 	}
