@@ -51,7 +51,7 @@ int logger(configobj config) {
         cout << "Getting inital UPS state" << endl;
     }
     for (long unsigned int i = 0; i < config.upslist.size(); i++) {
-        initialstate[i] = getlogdata(config, i);
+        initialstate.push_back(getlogdata(config, i));
     }
     //Start logging loop
     if (config.verbose) {
@@ -94,10 +94,8 @@ int checkevent(configobj config, int index, logdataobj initialdata, logdataobj l
 
 //Function to populate the upsidlist with the IDs of the UPSs in the upslist
 configobj set_upsidlist(configobj config) {
-    int upsid;
     for (long unsigned int i = 0; i < config.upslist.size(); i++) {
-        upsid = getupsid(config, i);
-        config.upsidlist.push_back(upsid);
+        config.upsidlist.push_back(getupsid(config, i));
     }
     return config;
 }
