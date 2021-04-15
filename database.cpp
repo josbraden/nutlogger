@@ -82,7 +82,7 @@ int getupsknt(configobj config, int index) {
 	return ret;
 }
 
-//Adds a UPS to the database and returns it's ID
+//Adds a UPS to the database
 int addups(configobj config, int index) {
     string query = "INSERT INTO devices (nut_name) VALUES ('" + config.upslist[index] + "')";
     try {
@@ -98,7 +98,7 @@ int addups(configobj config, int index) {
 		driver = get_driver_instance();
 		con = driver->connect(connection_properties);
 		stmt = con->createStatement();
-		stmt->executeQuery(query);
+		stmt->execute(query);
 		delete stmt;
 		delete con;
 	}
@@ -222,7 +222,7 @@ int updateextradata(configobj config, int index, extradataobj extradata) {
 		driver = get_driver_instance();
 		con = driver->connect(connection_properties);
 		stmt = con->createStatement();
-		stmt->executeQuery(query);
+		stmt->execute(query);
 		delete stmt;
 		delete con;
 	}
@@ -269,7 +269,7 @@ int addlogentry(configobj config, int index, logdataobj logdata) {
 		driver = get_driver_instance();
 		con = driver->connect(connection_properties);
 		stmt = con->createStatement();
-		stmt->executeQuery(query);
+		stmt->execute(query);
 		delete stmt;
 		delete con;
 	}
@@ -317,7 +317,7 @@ int addevententry(configobj config, int index, logdataobj logdata) {
 		driver = get_driver_instance();
 		con = driver->connect(connection_properties);
 		stmt = con->createStatement();
-		stmt->executeQuery(query);
+		stmt->execute(query);
 		delete stmt;
 		delete con;
 	}
