@@ -94,8 +94,10 @@ int checkevent(configobj config, int index, logdataobj initialdata, logdataobj l
 
 //Function to populate the upsidlist with the IDs of the UPSs in the upslist
 configobj set_upsidlist(configobj config) {
+    int upsid;
     for (long unsigned int i = 0; i < config.upslist.size(); i++) {
-        config.upsidlist[i] = getupsid(config, i);
+        upsid = getupsid(config, i);
+        config.upsidlist.push_back(upsid);
     }
     return config;
 }
