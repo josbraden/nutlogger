@@ -66,7 +66,6 @@ int logger(configobj config) {
             logdata = getlogdata(config, i);
             addlogentry(config, i, logdata);
             checkevent(config, i, initialstate[i], logdata);
-            //TODO trigger events
         }
         if (config.singleloop) {
             return 0;
