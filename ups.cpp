@@ -18,6 +18,7 @@ int testups(configobj config) {
             nut::Variable nutvar = nutdevice.getVariable("device.model");
             testvar = nutvar.getValue()[0];
             nutclient->logout();
+            nutclient_destroy(nutclient);
             if (config.verbose) {
                 cout << "Device " << config.upslist[i] << " model: " << testvar << endl;
             }
@@ -93,6 +94,7 @@ extradataobj getextradata(configobj config, int index) {
         nutvar = nutdevice.getVariable("ups.vendorid");
         extradata.ups_vendorid = stoi(nutvar.getValue()[0]);
         nutclient->logout();
+        nutclient_destroy(nutclient);
     }
     catch(nut::NutException& ex) {
         if (config.verbose) {
@@ -124,6 +126,7 @@ logdataobj getlogdata(configobj config, int index) {
         nutvar = nutdevice.getVariable("ups.status");
         logdata.ups_status = nutvar.getValue()[0];
         nutclient->logout();
+        nutclient_destroy(nutclient);
     }
     catch(nut::NutException& ex) {
         if (config.verbose) {
