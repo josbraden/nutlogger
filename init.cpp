@@ -20,7 +20,7 @@ int init(argobj args) {
     configobj config;
     ifstream infile;
     string line, key, value;
-    string configfile = "nutlogger.cnf";
+    string configfile = "/home/josh/nutlogger.cnf"; //This is hacky
     //Set variables from args
     config.verbose = args.verbose;
     config.singleloop = args.singleloop;
