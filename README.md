@@ -22,6 +22,8 @@ On Ubuntu/Debian you can run: `apt install make g++ libboost-dev libmysqlcppconn
 3. Copy the example config file from nutlogger-example.cnf to nutlogger.cnf and change variables to fit your environment
 4. Run nutlogger executable
 
+See nutlogger.cron for an example to automatically launch the executable
+
 ## Database Schema
 
 - Tables
@@ -33,3 +35,12 @@ On Ubuntu/Debian you can run: `apt install make g++ libboost-dev libmysqlcppconn
     - Has log of recent UPS usage metrics
   - upslog_archive
     - Same as upslog, hold rotated data on compressed rows
+
+### Database Log Rotation
+
+This query is used to rotate logs older than one day into the archive table
+
+```
+INSERT INTO upslog_archive (SELECT * FROM upslog WHERE timestamp > NOW() - INTERVAL 1 DAY);
+DELETE FROM upslog WHERE id IN (SELECT id FROM upslog_archive);
+```
