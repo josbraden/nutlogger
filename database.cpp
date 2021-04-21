@@ -365,3 +365,35 @@ int rotatelogs(configobj config) {
 	}
     return 0;
 }
+
+//Optimizes the archive table to improve compression ratio
+//Doesn't need to be run very often
+int optimizearchive(configobj config) {
+	string query = "OPTIMIZE TABLE upslog_archive";
+	try {
+		sql::Driver *driver;
+		sql::Connection *con;
+		sql::ConnectOptionsMap connection_properties;
+		sql::Statement *stmt;
+		connection_properties["hostName"] = config.mysql_host;
+		connection_properties["userName"] = config.mysql_username;
+		connection_properties["password"] = config.mysql_password;
+		connection_properties["schema"] = config.mysql_database;
+		connection_properties["CLIENT_COMPRESS"] = config.mysql_compress;
+		driver = get_driver_instance();
+		con = driver->connect(connection_properties);
+		stmt = con->createStatement();
+		stmt->execute(query);
+		delete stmt;
+		delete con;
+	}
+	catch (sql::SQLException &e) {
+		cout << "# ERR: SQLException in " << __FILE__;
+		cout << "(" << __FUNCTION__ << ") on line " << __LINE__ << endl;
+		cout << "# ERR: " << e.what();
+		cout << " (MySQL error code: " << e.getErrorCode();
+		cout << ", SQLState: " << e.getSQLState() << " )" << endl;
+		return -1;
+	}
+    return 0;
+}
