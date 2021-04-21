@@ -41,6 +41,6 @@ See nutlogger.cron for an example to automatically launch the executable
 This query is used to rotate logs older than one day into the archive table
 
 ```
-INSERT INTO upslog_archive (SELECT * FROM upslog WHERE timestamp > NOW() - INTERVAL 1 DAY);
+INSERT INTO upslog_archive (SELECT * FROM upslog WHERE timestamp < NOW() - INTERVAL 1 DAY);
 DELETE FROM upslog WHERE id IN (SELECT id FROM upslog_archive);
 ```
