@@ -331,3 +331,37 @@ int addevententry(configobj config, int index, logdataobj logdata) {
 	}
     return 0;
 }
+
+//Run database log rotation
+//Moves records older than 1 day into the archive table
+int rotatelogs(configobj config) {
+    string query1 = "INSERT INTO upslog_archive (SELECT * FROM upslog WHERE timestamp < NOW() - INTERVAL 1 DAY)";
+	string query2 = "DELETE FROM upslog WHERE id IN (SELECT id FROM upslog_archive)";
+    try {
+		sql::Driver *driver;
+		sql::Connection *con;
+		sql::ConnectOptionsMap connection_properties;
+		sql::Statement *stmt;
+		connection_properties["hostName"] = config.mysql_host;
+		connection_properties["userName"] = config.mysql_username;
+		connection_properties["password"] = config.mysql_password;
+		connection_properties["schema"] = config.mysql_database;
+		connection_properties["CLIENT_COMPRESS"] = config.mysql_compress;
+		driver = get_driver_instance();
+		con = driver->connect(connection_properties);
+		stmt = con->createStatement();
+		stmt->execute(query1);
+		stmt->execute(query2);
+		delete stmt;
+		delete con;
+	}
+	catch (sql::SQLException &e) {
+		cout << "# ERR: SQLException in " << __FILE__;
+		cout << "(" << __FUNCTION__ << ") on line " << __LINE__ << endl;
+		cout << "# ERR: " << e.what();
+		cout << " (MySQL error code: " << e.getErrorCode();
+		cout << ", SQLState: " << e.getSQLState() << " )" << endl;
+		return -1;
+	}
+    return 0;
+}

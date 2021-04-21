@@ -96,6 +96,7 @@ int getupsid(configobj config, int index);
 int updateextradata(configobj config, int index, extradataobj extradata);
 int addlogentry(configobj config, int index, logdataobj logdata);
 int addevententry(configobj config, int index, logdataobj logdata);
+int rotatelogs(configobj config);
 
 //Main loop functions
 int logger(configobj config);
