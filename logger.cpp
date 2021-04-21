@@ -12,6 +12,12 @@ int logger(configobj config) {
     extradataobj extradata;
     logdataobj logdata;
     vector<logdataobj> initialstate;
+    int rotateinterval, rotateknt, optimizeinterval, optimizeknt;
+    //Set variables: rotate logs daily, optimize tables weekly
+    rotateinterval = 86400 / config.pollinterval;
+    optimizeinterval = rotateinterval * 7;
+    rotateknt = 0;
+    optimizeinterval = 0;
     //Before starting loop, see if devices are in database yet
     if (config.verbose) {
         cout << "Checking database for devices..." << endl;
@@ -53,6 +59,12 @@ int logger(configobj config) {
     for (long unsigned int i = 0; i < config.upslist.size(); i++) {
         initialstate.push_back(getlogdata(config, i));
     }
+    //Run log rotation and optimization on start
+    if (config.verbose) {
+        cout << "Running initial log rotation and table optimization" << endl;
+    }
+    rotatelogs(config);
+    optimizearchive(config);
     //Start logging loop
     if (config.verbose) {
         cout << "Starting logging" << endl;
@@ -69,6 +81,22 @@ int logger(configobj config) {
         }
         if (config.singleloop) {
             return 0;
+        }
+        rotateknt++;
+        optimizeknt++;
+        if (rotateknt >= rotateinterval) {
+            if (config.verbose) {
+                cout << "Running log rotation" << endl;
+            }
+            rotatelogs(config);
+            rotateknt = 0;
+        }
+        if (optimizeknt >= optimizeinterval) {
+            if (config.verbose) {
+                cout << "Running table optimization" << endl;
+            }
+            optimizearchive(config);
+            optimizeknt = 0;
         }
         if (config.verbose) {
             cout << "Sleeping for " << config.pollinterval << " seconds" << endl;
