@@ -17,7 +17,7 @@ int logger(configobj config) {
     rotateinterval = 86400 / config.pollinterval;
     optimizeinterval = rotateinterval * 7;
     rotateknt = 0;
-    optimizeinterval = 0;
+    optimizeknt = 0;
     //Before starting loop, see if devices are in database yet
     if (config.verbose) {
         cout << "Checking database for devices..." << endl;
