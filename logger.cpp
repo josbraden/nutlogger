@@ -13,9 +13,9 @@ int logger(configobj config) {
     logdataobj logdata;
     vector<logdataobj> initialstate;
     int rotateinterval, rotateknt, optimizeinterval, optimizeknt;
-    //Set variables: rotate logs daily, optimize tables weekly
+    //Set variables: rotate logs daily, optimize tables monthly
     rotateinterval = 86400 / config.pollinterval;
-    optimizeinterval = rotateinterval * 7;
+    optimizeinterval = (86400 * 30) / config.pollinterval;
     rotateknt = 0;
     optimizeknt = 0;
     //Before starting loop, see if devices are in database yet
