@@ -25,7 +25,7 @@ DROP TABLE IF EXISTS `devices`;
 CREATE TABLE `devices` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nut_name` varchar(64) NOT NULL,
-  `date_added` timestamp NOT NULL DEFAULT current_timestamp(),
+  `time_added` datetime NOT NULL DEFAULT current_timestamp(),
   PRIMARY KEY (`id`),
   UNIQUE KEY `nut_name` (`nut_name`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -99,7 +99,7 @@ DROP TABLE IF EXISTS `events`;
 CREATE TABLE `events` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `devices_id` int(11) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT current_timestamp(),
+  `time` datetime NOT NULL DEFAULT current_timestamp(),
   `battery_charge` int(11) NOT NULL,
   `battery_runtime` int(11) NOT NULL,
   `battery_voltage` float NOT NULL,
@@ -130,7 +130,7 @@ DROP TABLE IF EXISTS `upslog`;
 CREATE TABLE `upslog` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `devices_id` int(11) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT current_timestamp(),
+  `time` datetime NOT NULL DEFAULT current_timestamp(),
   `battery_charge` int(11) NOT NULL,
   `battery_runtime` int(11) NOT NULL,
   `battery_voltage` float NOT NULL,
@@ -161,7 +161,7 @@ DROP TABLE IF EXISTS `upslog_archive`;
 CREATE TABLE `upslog_archive` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `devices_id` int(11) NOT NULL,
-  `timestamp` timestamp NOT NULL DEFAULT current_timestamp(),
+  `time` datetime NOT NULL DEFAULT current_timestamp(),
   `battery_charge` int(11) NOT NULL,
   `battery_runtime` int(11) NOT NULL,
   `battery_voltage` float NOT NULL,
@@ -191,4 +191,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-04-07 16:39:41
+-- Dump completed on 2021-04-29 11:24:18
