@@ -90,37 +90,6 @@ LOCK TABLES `devices_extradata` WRITE;
 UNLOCK TABLES;
 
 --
--- Table structure for table `events`
---
-
-DROP TABLE IF EXISTS `events`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `events` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `devices_id` int(11) NOT NULL,
-  `time` datetime NOT NULL DEFAULT current_timestamp(),
-  `battery_charge` int(11) NOT NULL,
-  `battery_runtime` int(11) NOT NULL,
-  `battery_voltage` float NOT NULL,
-  `input_voltage` float NOT NULL,
-  `output_voltage` float NOT NULL,
-  `ups_load` int(11) NOT NULL,
-  `ups_status` varchar(8) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `events`
---
-
-LOCK TABLES `events` WRITE;
-/*!40000 ALTER TABLE `events` DISABLE KEYS */;
-/*!40000 ALTER TABLE `events` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `upslog`
 --
 

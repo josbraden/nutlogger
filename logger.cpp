@@ -11,7 +11,6 @@ using namespace std;
 int logger(configobj config) {
     extradataobj extradata;
     logdataobj logdata;
-    vector<logdataobj> initialstate;
     int rotateinterval, rotateknt, optimizeinterval, optimizeknt;
     //Set variables: rotate logs daily, optimize tables weekly
     rotateinterval = 86400 / config.pollinterval;
@@ -52,13 +51,6 @@ int logger(configobj config) {
             updateextradata(config, i, extradata);
         }
     }
-    //Get initial status for event triggering
-    if (config.verbose) {
-        cout << "Getting inital UPS state" << endl;
-    }
-    for (long unsigned int i = 0; i < config.upslist.size(); i++) {
-        initialstate.push_back(getlogdata(config, i));
-    }
     //Run log rotation and optimization on start
     if (config.verbose) {
         cout << "Running initial log rotation and table optimization" << endl;
@@ -77,7 +69,6 @@ int logger(configobj config) {
             logdata.status = 0;
             logdata = getlogdata(config, i);
             addlogentry(config, i, logdata);
-            checkevent(config, i, initialstate[i], logdata);
         }
         if (config.singleloop) {
             return 0;
@@ -102,19 +93,6 @@ int logger(configobj config) {
             cout << "Sleeping for " << config.pollinterval << " seconds" << endl;
         }
         sleep(config.pollinterval);
-    }
-    return 0;
-}
-
-//Checks if an event has occurred, and if so adds an entry in the events table
-//Return 0 if no event happened, 1 if an event happened
-int checkevent(configobj config, int index, logdataobj initialdata, logdataobj logdata) {
-    if (logdata.battery_charge != initialdata.battery_charge || logdata.ups_status != initialdata.ups_status) {
-        if (config.verbose) {
-            cout << "Event detected! Logging to database" << endl;
-        }
-        addevententry(config, index, logdata);
-        return 1;
     }
     return 0;
 }

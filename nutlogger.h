@@ -95,11 +95,9 @@ int addups(configobj config, int index);
 int getupsid(configobj config, int index);
 int updateextradata(configobj config, int index, extradataobj extradata);
 int addlogentry(configobj config, int index, logdataobj logdata);
-int addevententry(configobj config, int index, logdataobj logdata);
 int rotatelogs(configobj config);
 int optimizearchive(configobj config);
 
 //Main loop functions
 int logger(configobj config);
-int checkevent(configobj config, int index, logdataobj initialdata, logdataobj logdata);
 configobj set_upsidlist(configobj config);
