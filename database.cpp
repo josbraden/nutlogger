@@ -287,7 +287,7 @@ int addlogentry(configobj config, int index, logdataobj logdata) {
 //Run database log rotation
 //Moves records older than 1 day into the archive table
 int rotatelogs(configobj config) {
-    string query1 = "INSERT INTO upslog_archive (SELECT * FROM upslog WHERE time < NOW() - INTERVAL 7 DAY)";
+    string query1 = "INSERT INTO upslog_archive (SELECT * FROM upslog WHERE time < NOW() - INTERVAL 30 DAY)";
 	string query2 = "DELETE FROM upslog WHERE id IN (SELECT id FROM upslog_archive)";
     try {
 		sql::Driver *driver;
