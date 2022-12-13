@@ -11,3 +11,14 @@ build:
     paths:
       - nutlogger
     expire_in: 1 day
+release:
+  stage: build
+  before_script:
+    - apt-get update -qq
+    - apt-get install -y make g++ libboost-dev libmysqlcppconn-dev libmysqlclient-dev libnutclient-dev
+  script:
+    - make release
+  artifacts:
+    paths:
+      - nutlogger
+    expire_in: 1 day
