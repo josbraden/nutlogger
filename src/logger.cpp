@@ -5,7 +5,7 @@ Main logger loop code
 #include <string>
 #include <vector>
 #include <unistd.h>
-#include "nutlogger.h"
+#include "../include/nutlogger.h"
 using namespace std;
 
 int logger(configobj config) {

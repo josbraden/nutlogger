@@ -4,7 +4,7 @@ For database related functionality
 #include <iostream>
 #include <string>
 #include <unistd.h>
-#include "nutlogger.h"
+#include "../include/nutlogger.h"
 #include <cppconn/driver.h>
 #include <cppconn/exception.h>
 #include <cppconn/resultset.h>

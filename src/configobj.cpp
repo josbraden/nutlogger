@@ -3,7 +3,7 @@
 #include <vector>
 #include <algorithm>
 #include <iterator>
-#include "nutlogger.h"
+#include "../include/nutlogger.h"
 using namespace std;
 
 void configobj::setconfigfield(string key, string value) {

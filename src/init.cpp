@@ -12,7 +12,7 @@ https://stackoverflow.com/questions/26824260/c-unique-values-in-a-vector
 #include <string>
 #include <fstream>
 #include <vector>
-#include "nutlogger.h"
+#include "../include/nutlogger.h"
 using namespace std;
 
 //Handles program initialization

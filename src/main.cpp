@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include "nutlogger.h"
+#include "../include/nutlogger.h"
 using namespace std;
 
 int main(int argc, char *argv[]) {
