@@ -11,8 +11,9 @@ CPPFLAGS := -Iinclude -MMD -MP
 CFLAGS   := -Wall
 LDFLAGS  := 
 LDLIBS   := -lmysqlcppconn -lmysqlclient -lz -ldl -pthread -lnutclient
+release: CFLAGS := -Wall -O3
 
-.PHONY: all clean
+.PHONY: all clean release
 
 all: $(EXE)
 
@@ -27,5 +28,7 @@ $(BIN_DIR) $(OBJ_DIR):
 
 clean:
 	@$(RM) -rv $(EXE) $(OBJ_DIR)
+
+release: all
 
 -include $(OBJ:.o=.d)
