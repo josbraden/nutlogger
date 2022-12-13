@@ -46,7 +46,7 @@ int init(argobj args) {
     infile.close();
     //Sort and unique config.upslist
     config.upslist_sortUnique();
-    if (config.upslist.size() == 0) {
+    if (!config.upslist.size()) {
         if (config.verbose) {
             cout << "No UPS devices listed for monitor, exiting" << endl;
         }

@@ -8,29 +8,29 @@ using namespace std;
 
 void configobj::setconfigfield(string key, string value) {
     int value_int = 0;
-    if (key.compare("mysql_username") == 0) {
+    if (!key.compare("mysql_username")) {
         mysql_username = value;
     }
-    else if (key.compare("mysql_password") == 0) {
+    else if (!key.compare("mysql_password")) {
         mysql_password = value;
     }
-    else if (key.compare("mysql_host") == 0) {
+    else if (!key.compare("mysql_host")) {
         mysql_host = value;
     }
-    else if (key.compare("mysql_database") == 0) {
+    else if (!key.compare("mysql_database")) {
         mysql_database = value;
     }
-    else if (key.compare("nut_server") == 0) {
+    else if (!key.compare("nut_server")) {
         nut_server = value;
     }
-    else if (key.compare("nut_port") == 0) {
+    else if (!key.compare("nut_port")) {
         value_int = stoi(value);
         //Entire TCP port range is a pretty wide sanity check
         if (value_int > 1 && value_int < 65535) {
             nut_port = value_int;
         }
     }
-    else if (key.compare("pollinterval") == 0) {
+    else if (!key.compare("pollinterval")) {
         value_int = stoi(value);
         //Maximum poll wait: 24 hours
         //Minimum: 2 seconds
@@ -38,7 +38,7 @@ void configobj::setconfigfield(string key, string value) {
             pollinterval = value_int;
         }
     }
-    else if (key.compare("upsname") == 0) {
+    else if (!key.compare("upsname")) {
         upslist.push_back(value);
     }
     else {
