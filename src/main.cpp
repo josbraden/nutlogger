@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include "nutlogger.h"
+#include "../include/nutlogger.h"
 using namespace std;
 
 int main(int argc, char *argv[]) {
@@ -10,17 +10,17 @@ int main(int argc, char *argv[]) {
     if (argc > 1) {
         for (int i = 1; i < argc; i++) {
             arg = argv[i];
-            if (arg.compare("-h") == 0) {
+            if (!arg.compare("-h")) {
                 cout << "Usage: nutlogger [-v] [--singleloop] [-C]" << endl;
                 return 0;
             }
-            else if (arg.compare("-v") == 0) {
+            else if (!arg.compare("-v")) {
                 args.verbose = true;
             }
-            else if (arg.compare("--singleloop") == 0) {
+            else if (!arg.compare("--singleloop")) {
                 args.singleloop = true;
             }
-            else if (arg.compare("-C") == 0) {
+            else if (!arg.compare("-C")) {
                 args.mysql_compress = true;
             }
             else {

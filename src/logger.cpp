@@ -5,7 +5,7 @@ Main logger loop code
 #include <string>
 #include <vector>
 #include <unistd.h>
-#include "nutlogger.h"
+#include "../include/nutlogger.h"
 using namespace std;
 
 int logger(configobj config) {
@@ -47,7 +47,7 @@ int logger(configobj config) {
     for (long unsigned int i = 0; i < config.upslist.size(); i++) {
         extradata.status = 0;
         extradata = getextradata(config, i);
-        if (extradata.status == 0) {
+        if (!extradata.status) {
             updateextradata(config, i, extradata);
         }
     }

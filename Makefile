@@ -1,25 +1,34 @@
-CXX=g++
-CFLAGS=-Wall
-LIBS=-lmysqlcppconn -lmysqlclient -lz -ldl -pthread -lnutclient
-DEPS = nutlogger.h
-NUTLOGGEROBJ = main.o init.o configobj.o ups.o database.o logger.o
+SRC_DIR := src
+OBJ_DIR := obj
+BIN_DIR := .
 
-release: CFLAGS=-Wall -O3
+EXE := $(BIN_DIR)/nutlogger
+SRC := $(wildcard $(SRC_DIR)/*.cpp)
+OBJ := $(SRC:$(SRC_DIR)/%.cpp=$(OBJ_DIR)/%.o)
 
-%.o: %.cpp $(DEPS)
-	$(CXX) $(CFLAGS) -c -o $@ $<
+CXX := g++
+CPPFLAGS := -Iinclude -MMD -MP
+CFLAGS   := -Wall
+LDFLAGS  := 
+LDLIBS   := -lmysqlcppconn -lmysqlclient -lz -ldl -pthread -lnutclient
+release: CFLAGS := -Wall -O3
 
-nutlogger: $(NUTLOGGEROBJ)
-	$(CXX) -o $@ $^ $(LIBS)
+.PHONY: all clean release
 
-.PHONY: release
-release: nutlogger
+all: $(EXE)
 
-.PHONY: clean
+$(EXE): $(OBJ) | $(BIN_DIR)
+	$(CXX) $(LDFLAGS) $^ $(LDLIBS) -o $@
+
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
+	$(CXX) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
+
+$(BIN_DIR) $(OBJ_DIR):
+	mkdir -p $@
+
 clean:
-	-rm -f nutlogger *.o
+	@$(RM) -rv $(EXE) $(OBJ_DIR)
 
-.PHONY: all
-all: nutlogger
+release: all
 
-.DEFAULT_GOAL := all
+-include $(OBJ:.o=.d)

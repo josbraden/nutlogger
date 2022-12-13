@@ -12,7 +12,7 @@ https://stackoverflow.com/questions/26824260/c-unique-values-in-a-vector
 #include <string>
 #include <fstream>
 #include <vector>
-#include "nutlogger.h"
+#include "../include/nutlogger.h"
 using namespace std;
 
 //Handles program initialization
@@ -46,7 +46,7 @@ int init(argobj args) {
     infile.close();
     //Sort and unique config.upslist
     config.upslist_sortUnique();
-    if (config.upslist.size() == 0) {
+    if (!config.upslist.size()) {
         if (config.verbose) {
             cout << "No UPS devices listed for monitor, exiting" << endl;
         }

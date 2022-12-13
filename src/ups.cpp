@@ -2,7 +2,7 @@
 #include <string>
 #include <vector>
 #include <nutclient.h>
-#include "nutlogger.h"
+#include "../include/nutlogger.h"
 using namespace std;
 
 //Function to test connection to all UPS devices
