@@ -12,6 +12,7 @@ https://stackoverflow.com/questions/26824260/c-unique-values-in-a-vector
 #include <string>
 #include <fstream>
 #include <vector>
+#include <filesystem>
 #include "../include/nutlogger.h"
 using namespace std;
 
@@ -20,7 +21,7 @@ int init(argobj args) {
     configobj config;
     ifstream infile;
     string line, key, value;
-    string configfile = "~/nutlogger/nutlogger.cnf"; //This is hacky
+    string configfile = filesystem::current_path();
     //Set variables from args
     config.verbose = args.verbose;
     config.singleloop = args.singleloop;
