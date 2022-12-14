@@ -15,6 +15,8 @@ To build you'll need
 
 On Ubuntu/Debian you can run: `apt install make g++ libboost-dev libmysqlcppconn-dev libmysqlclient-dev libnutclient-dev`
 
+Update: on my raspbian bullseye raspberry pi I had to also install libmysql++-dev to compile
+
 ## Getting Started
 
 1. Create a database on your MySQL/Mariadb server and a user and password
