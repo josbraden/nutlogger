@@ -13,8 +13,8 @@ class configobj {
     public:
     //Program stuff
     bool verbose = false;
-    int pollinterval = 35;
     bool singleloop = false;
+    int pollinterval = 35;
     //MySQL stuff
     std::string mysql_host = "127.0.0.1";
 	std::string mysql_username = "upsuser";
