@@ -22,20 +22,17 @@ int init(argobj args) {
     configobj config;
     ifstream infile;
     string line, key, value;
-    char configname[16] = "nutlogger.cnf";
-    char configfile[512];
-    getcwd(configfile, 512);
-    strcat(configfile, "/");
-    strcat(configfile, configname);
     //Set variables from args
     config.verbose = args.verbose;
     config.singleloop = args.singleloop;
     config.mysql_compress = args.mysql_compress;
+    //Get config file location
+    config.getexepath();
     //Open and parse config file
-    infile.open(configfile, ios::in);
+    infile.open(config.configfile, ios::in);
     if (!infile) {
         if (config.verbose) {
-            cout << "Error: " << configfile << " not found!" << endl;
+            cout << "Error: " << config.configfile << " not found!" << endl;
         }
         return 2;
     }

@@ -15,7 +15,8 @@ class configobj {
     bool verbose = false;
     bool singleloop = false;
     int pollinterval = 35;
-    std::string exepath;
+    std::string configfilename = "nutlogger.cnf";
+    std::string configfile;
     //MySQL stuff
     std::string mysql_host = "127.0.0.1";
 	std::string mysql_username = "upsuser";

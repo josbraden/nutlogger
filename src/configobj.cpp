@@ -78,7 +78,6 @@ string configobj::getexepath() {
         string::size_type t = path.find_last_of("/");
         path = path.substr(0,t);
     }
-
     fullFileName = path + string("/");
-    exepath = fullFileName;
+    configfile = fullFileName + configfilename;
 }
