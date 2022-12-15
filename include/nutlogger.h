@@ -33,7 +33,7 @@ class configobj {
     //Function declarations
     void setconfigfield(std::string key, std::string value);
     void upslist_sortUnique();
-    std::string getexepath();
+    void getexepath();
 };
 
 //Object to hold data for log entries
