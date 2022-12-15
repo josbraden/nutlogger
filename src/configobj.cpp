@@ -58,7 +58,7 @@ void configobj::upslist_sortUnique() {
 }
 
 //Function to get the exe's running directory
-string configobj::getexepath() {
+void configobj::getexepath() {
     string fullFileName = "";
 
     // Code taken from: http://www.gamedev.net/community/forums/topic.asp?topic_id=459511
