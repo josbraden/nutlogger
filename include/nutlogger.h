@@ -84,7 +84,6 @@ class extradataobj {
 
 //Init functions
 int init(argobj argdata);
-configobj setconfigfield(configobj config, std::string key, std::string value);
 
 //UPS functions
 int testups(configobj config);
